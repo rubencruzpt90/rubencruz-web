@@ -114,10 +114,12 @@
   .case b{font-size:22px;font-weight:800;letter-spacing:-.02em;line-height:1.15;background:linear-gradient(90deg,#b3101f,#e11d2a);-webkit-background-clip:text;background-clip:text;color:transparent}
   .case p{font-size:14px;color:rgba(0,0,0,.65);line-height:1.5}
   .cases-btn{position:absolute;top:calc(50% - 30px);width:44px;height:44px;border-radius:50%;border:1px solid var(--border-2);background:rgba(0,0,0,.75);backdrop-filter:blur(8px);color:#fff;font-size:18px;cursor:pointer;z-index:2;transition:background .2s}
-  .cases-btn:hover{background:var(--acc)}
+  @media (hover:hover){.cases-btn:not([disabled]):hover{background:var(--acc)}}
   .cases-btn.prev{left:-22px}.cases-btn.next{right:-22px}
   .cases-btn{top:calc(50% - 60px)}
-  @media (max-width:900px){.cases-btn{display:none}.case{flex-basis:88%}}
+  .cases-btn{display:grid;place-items:center;transition:background .2s,opacity .2s}
+  .cases-btn[disabled]{opacity:.25;cursor:default}
+  @media (max-width:900px){.case{flex-basis:88%}.cases-btn{top:calc(50% - 95px);width:40px;height:40px;font-size:17px;background:rgba(0,0,0,.7)}.cases-btn.prev{left:6px}.cases-btn.next{right:6px}}
 
   .founder{display:grid;grid-template-columns:minmax(0,320px) 1fr;gap:56px;align-items:center}
   .founder-photo{aspect-ratio:3/4;border-radius:20px;overflow:hidden;border:1px solid var(--border);box-shadow:var(--shadow-lg)}
@@ -499,14 +501,22 @@
   // "https://www.youtube-nocookie.com/embed/ID_DEL_VIDEO?autoplay=1"
   const VIDEO_URL = "img/vsl-ruben.mp4";
   const player = document.getElementById('player');
-  player.addEventListener('click', () => {
+  const abrirVideo = () => {
+    // Solo la primera vez: después los clics son del propio reproductor (pausa, barra, volumen…)
+    if (player.dataset.abierto) return;
     if (!VIDEO_URL) { player.querySelector('.play span').textContent = 'Aquí irá el vídeo (pendiente de grabar)'; return; }
+    player.dataset.abierto = '1';
+    player.removeAttribute('role'); player.removeAttribute('tabindex'); player.removeAttribute('aria-label');
+    player.style.cursor = 'auto';
     if (/\.(mp4|webm|mov)(\?|$)/i.test(VIDEO_URL)) {
       const v = document.createElement('video');
-      v.src = VIDEO_URL; v.controls = true; v.playsInline = true; v.autoplay = true;
+      v.src = VIDEO_URL; v.controls = true; v.playsInline = true; v.autoplay = true; v.preload = 'auto';
       player.replaceChildren(v);
+      v.play().catch(() => {});
     } else player.innerHTML = `<iframe src="${VIDEO_URL}" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
-  });
+  };
+  player.addEventListener('click', abrirVideo);
+  player.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && !player.dataset.abierto) { e.preventDefault(); abrirVideo(); } });
 
   // Número de WhatsApp de Rubén (formato internacional, sin + ni espacios)
   const WHATSAPP = "34655866773";
@@ -519,8 +529,12 @@
 
   // Carrusel de casos
   const casesEl = document.getElementById('cases');
-  document.querySelector('.cases-btn.prev').onclick = () => casesEl.scrollBy({left:-478});
-  document.querySelector('.cases-btn.next').onclick = () => casesEl.scrollBy({left:478});
+  const bPrev = document.querySelector('.cases-btn.prev'), bNext = document.querySelector('.cases-btn.next');
+  const paso = () => { const c = casesEl.querySelector('.case'); return c ? c.offsetWidth + 18 : 340; };
+  bPrev.onclick = () => casesEl.scrollBy({left: -paso(), behavior: 'smooth'});
+  bNext.onclick = () => casesEl.scrollBy({left: paso(), behavior: 'smooth'});
+  const flechas = () => { bPrev.disabled = casesEl.scrollLeft < 8; bNext.disabled = casesEl.scrollLeft + casesEl.clientWidth >= casesEl.scrollWidth - 8; };
+  casesEl.addEventListener('scroll', flechas, {passive: true}); addEventListener('resize', flechas); flechas();
 
   // Envío de solicitudes al Google Sheet + email (ver apps-script/LEEME.md)
   // URL de la aplicación web de Apps Script (Sheet «FORMULARIO LEADS» de Rubén)
@@ -529,6 +543,7 @@
   const fuente = (() => {
     const p = new URLSearchParams(location.search), ua = navigator.userAgent;
     let ref = ''; try { ref = document.referrer ? new URL(document.referrer).hostname.replace(/^www\./, '') : ''; } catch (e) {}
+    if (ref === location.hostname.replace(/^www\./, '') || /github\.io$/.test(ref)) ref = ''; // navegar dentro de la propia web no cambia el origen
     const utm = ['utm_source','utm_medium','utm_campaign','utm_content'].map(k => p.get(k)).filter(Boolean);
     const src = (p.get('utm_source') || '').toLowerCase(), med = (p.get('utm_medium') || '').toLowerCase();
     const pagado = p.has('fbclid') && /paid|ads|cpc|anuncio/.test(med) || p.has('gclid') || p.has('ttclid') || /paid|ads|cpc|anuncio/.test(med);
@@ -571,7 +586,7 @@
     fetch(LEAD_URL, {method: 'POST', mode: 'no-cors', keepalive: true, headers: {'Content-Type': 'text/plain;charset=utf-8'}, body}).catch(() => {});
   };
   medir('Visita');
-  player.addEventListener('click', () => medir('Vídeo reproducido'));
+  player.addEventListener('click', () => { if (player.dataset.abierto) medir('Vídeo reproducido'); });
 
   // Quiz
   const qs = [...document.querySelectorAll('.q')], bar = document.getElementById('bar'), prog = document.getElementById('prog');
