@@ -1,0 +1,711 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rubén Cruz · Entrenador personal online</title>
+<meta name="description" content="Entrenamiento y nutrición a medida para gente normal, con trabajo y poco tiempo. Entrenador personal online con Rubén Cruz.">
+<link rel="canonical" href="https://rubencruz.fit/">
+<!-- Icono (pestaña del navegador y móvil) -->
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="img/brand/favicon-32.png">
+<link rel="apple-touch-icon" href="img/brand/apple-touch-icon.png">
+<meta name="theme-color" content="#000000">
+<!-- Vista previa al compartir (Instagram, WhatsApp…) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Rubén Cruz">
+<meta property="og:title" content="Rubén Cruz · Entrenador personal online">
+<meta property="og:description" content="Entrenamiento y nutrición a medida para gente normal, con trabajo y poco tiempo.">
+<meta property="og:url" content="https://rubencruz.fit/">
+<meta property="og:image" content="https://rubencruz.fit/img/brand/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Rubén Cruz, entrenador personal: No necesitas más disciplina. Necesitas otro plan.">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://rubencruz.fit/img/brand/og-image.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#000; --surface:#0d0d10; --soft:#17171b;
+    --border:rgba(255,255,255,.1); --border-2:rgba(255,255,255,.18);
+    --text:#fff; --t55:rgba(255,255,255,.55); --t38:rgba(255,255,255,.38);
+    --acc:#ff3b47; --acc-2:#ff6b73; --acc-dk:#c8101f;
+    --gradient:linear-gradient(90deg,#e11d2a,#ff6b73,#e11d2a);
+    --shadow:0 4px 24px rgba(0,0,0,.5); --shadow-lg:0 16px 48px rgba(0,0,0,.6);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  [hidden]{display:none!important}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  em{font-style:normal;background:var(--gradient);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* HEADER */
+  header{position:fixed;inset:0 0 auto;z-index:200;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;background:rgba(0,0,0,.75);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+  .logo{font-weight:800;font-size:20px;letter-spacing:-.02em}
+  .logo span{color:var(--acc)}
+  .header-right{display:flex;align-items:center;gap:20px}
+  .header-tag{font-size:13px;font-weight:500;color:var(--t55)}
+  .header-cta{font-size:14px;font-weight:600;color:#000;background:#fff;padding:10px 20px;border-radius:10px;transition:opacity .15s}
+  .header-cta:hover{opacity:.8}
+
+  /* HERO + VSL */
+  .hero{position:relative;overflow:hidden;padding:130px 40px 80px;text-align:center}
+  .hero-blob{position:absolute;z-index:-1;width:900px;height:900px;top:-420px;left:50%;transform:translateX(-50%);
+    background:radial-gradient(circle at 30% 30%,rgba(225,29,42,.32),transparent 60%),radial-gradient(circle at 70% 40%,rgba(160,12,24,.3),transparent 60%),radial-gradient(circle at 50% 70%,rgba(255,107,115,.16),transparent 60%);
+    filter:blur(60px);animation:drift 14s ease-in-out infinite}
+  @keyframes drift{50%{transform:translateX(calc(-50% + 30px)) translateY(20px) scale(1.06)}}
+  .badge{display:inline-flex;align-items:center;gap:10px;background:#fff;border-radius:100px;padding:6px 16px 6px 8px;font-size:13px;font-weight:500;color:rgba(0,0,0,.7);margin-bottom:26px;box-shadow:var(--shadow)}
+  .badge strong{background:var(--gradient);background-size:200% 100%;color:#fff;font-weight:700;font-size:12px;padding:5px 12px;border-radius:100px;animation:shift 3s linear infinite}
+  @keyframes shift{to{background-position:200% 50%}}
+  h1{font-size:clamp(36px,5.6vw,62px);font-weight:700;line-height:1.08;letter-spacing:-.03em;max-width:820px;margin:0 auto 18px}
+  .sub{font-size:17px;color:var(--t55);max-width:560px;margin:0 auto}
+
+  .video{position:relative;max-width:900px;margin:44px auto 0;aspect-ratio:16/9;border-radius:20px;overflow:hidden;border:1px solid var(--border-2);box-shadow:0 30px 90px -20px rgba(225,29,42,.28),var(--shadow-lg);cursor:pointer;background:#111}
+  .video img{width:100%;height:100%;object-fit:cover;transition:filter .3s,transform .6s}
+  .video:hover img{filter:brightness(1.06);transform:scale(1.015)}
+  .video .play{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:16px} /* centrado: la portada deja libre el centro */
+  .video .play i{width:84px;height:84px;border-radius:50%;background:var(--gradient);display:grid;place-items:center;box-shadow:0 0 0 14px rgba(225,29,42,.2);transition:transform .25s}
+  .video:hover .play i{transform:scale(1.08)}
+  .video .play span{font-size:13px;font-weight:600;color:rgba(255,255,255,.85);background:rgba(0,0,0,.5);padding:6px 14px;border-radius:100px;backdrop-filter:blur(8px)}
+  .video iframe,.video video{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000}
+
+  .cta{display:inline-flex;align-items:center;gap:8px;margin-top:34px;background:var(--gradient);background-size:200% 100%;color:#fff;font-weight:700;font-size:16px;padding:16px 30px;border-radius:12px;box-shadow:0 10px 30px -8px rgba(225,29,42,.6);transition:transform .2s,background-position .6s;border:0;cursor:pointer;font-family:inherit}
+  .cta:hover{transform:translateY(-2px);background-position:100% 50%}
+  .cta-note{display:block;margin-top:12px;font-size:13px;color:var(--t38)}
+
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);max-width:760px;margin:60px auto 0;border:1px solid var(--border);border-radius:18px;background:var(--surface);overflow:hidden}
+  .stat{padding:26px 16px;border-right:1px solid var(--border)}
+  .stat:last-child{border-right:0}
+  .stat b{display:block;font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-.03em;line-height:1}
+  .stat span{font-size:13px;color:var(--t55)}
+
+  /* MARQUEE */
+  .marquee{background:#fff;overflow:hidden;padding:18px 0}
+  .track{display:flex;align-items:center;gap:18px;width:max-content;animation:mq 30s linear infinite}
+  .track span{font-size:14px;font-weight:700;color:#000;white-space:nowrap}
+  .track i{width:6px;height:6px;border-radius:50%;background:var(--acc-dk);flex:none}
+  @keyframes mq{to{transform:translateX(-50%)}}
+
+  /* SECTIONS */
+  .section{padding:90px 40px;max-width:1100px;margin:0 auto}
+  .label{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t38);text-align:center;margin-bottom:12px}
+  h2{font-size:clamp(28px,4vw,40px);font-weight:700;letter-spacing:-.02em;text-align:center;max-width:680px;margin:0 auto 52px;line-height:1.22}
+
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .step{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:30px 26px;box-shadow:var(--shadow);transition:transform .25s,border-color .25s,box-shadow .25s}
+  .step:hover{transform:translateY(-6px);border-color:var(--acc);box-shadow:0 16px 40px rgba(225,29,42,.15)}
+  .num{width:46px;height:46px;border-radius:50%;background:var(--gradient);color:#fff;display:grid;place-items:center;font-weight:800;margin-bottom:18px;box-shadow:0 6px 20px rgba(225,29,42,.3)}
+  .step h4{font-size:17px;margin-bottom:8px}
+  .step p{font-size:14px;color:var(--t55)}
+
+  .cases-wrap{position:relative}
+  .cases{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:4px 2px 18px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .cases::-webkit-scrollbar{display:none}
+  .case{flex:0 0 460px;scroll-snap-align:start;background:#fff;color:#111;border:1px solid #fff;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:transform .25s,border-color .25s}
+  .case:hover{transform:translateY(-6px);border-color:var(--acc)}
+  .case img{aspect-ratio:3/2;object-fit:cover;width:100%;height:auto;background:#000}
+  .case div{padding:18px 20px 22px;display:flex;flex-direction:column;gap:6px;flex:1}
+  .case small{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(0,0,0,.5)}
+  .case b{font-size:22px;font-weight:800;letter-spacing:-.02em;line-height:1.15;background:linear-gradient(90deg,#b3101f,#e11d2a);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .case p{font-size:14px;color:rgba(0,0,0,.65);line-height:1.5}
+  .cases-btn{position:absolute;top:calc(50% - 30px);width:44px;height:44px;border-radius:50%;border:1px solid var(--border-2);background:rgba(0,0,0,.75);backdrop-filter:blur(8px);color:#fff;font-size:18px;cursor:pointer;z-index:2;transition:background .2s}
+  .cases-btn:hover{background:var(--acc)}
+  .cases-btn.prev{left:-22px}.cases-btn.next{right:-22px}
+  .cases-btn{top:calc(50% - 60px)}
+  @media (max-width:900px){.cases-btn{display:none}.case{flex-basis:88%}}
+
+  .founder{display:grid;grid-template-columns:minmax(0,320px) 1fr;gap:56px;align-items:center}
+  .founder-photo{aspect-ratio:3/4;border-radius:20px;overflow:hidden;border:1px solid var(--border);box-shadow:var(--shadow-lg)}
+  .founder-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 15%}
+  .founder .label,.founder h2{text-align:left;margin-left:0}
+  .founder h2{margin-bottom:22px}
+  .founder p{color:var(--t55);margin-bottom:14px;font-size:16px}
+  .founder p strong{color:var(--text)}
+
+  /* LIGHT: qué incluye */
+  .light{background:#fff;color:#000;border-radius:32px;max-width:1160px;padding:72px 48px}
+  .light .label{color:rgba(0,0,0,.4)}
+  .light em{background:linear-gradient(90deg,#b3101f,#e11d2a);-webkit-background-clip:text;background-clip:text}
+  .apply{display:grid;grid-template-columns:1.2fr 1fr;gap:56px;align-items:start}
+  .apply .label,.apply h2{text-align:left;margin-left:0}
+  .apply h2{margin-bottom:26px}
+  .list{list-style:none;display:grid;gap:14px}
+  .list li{display:flex;gap:12px;font-size:15.5px;color:rgba(0,0,0,.75)}
+  .list li::before{content:"✓";flex:none;width:24px;height:24px;border-radius:50%;background:#111;color:var(--acc);display:grid;place-items:center;font-size:12px;font-weight:800}
+  .price-ref{padding:20px 22px;border:1px solid rgba(0,0,0,.1);border-radius:14px;font-size:14.5px;color:rgba(0,0,0,.6)}
+  .price-ref b{display:block;color:#000;font-size:18px;margin-bottom:4px}
+
+  .hero-quiz{max-width:460px;margin:40px auto 0;text-align:left}
+  .hero-quiz .cta-note{text-align:center}
+  #quiz{scroll-margin-top:96px;border:1px solid var(--border-2)}
+  .apply-side{display:flex;flex-direction:column;gap:20px;align-self:center}
+  .apply-side .cta{margin-top:0;justify-content:center}
+  .quiz{background:#0a0a0c;color:#fff;border-radius:20px;padding:30px;box-shadow:0 20px 50px -15px rgba(0,0,0,.45)}
+  .q-prog{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--t38);margin-bottom:10px}
+  .bar{height:4px;background:var(--soft);border-radius:4px;overflow:hidden;margin-bottom:20px}
+  .bar div{height:100%;width:33%;background:var(--gradient);transition:width .4s}
+  .q{display:none}
+  .q.active{display:block;animation:fade .35s}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}}
+  .q p.ask{font-size:18px;font-weight:700;margin-bottom:16px;line-height:1.35}
+  .opts{display:grid;gap:9px}
+  .opt{text-align:left;background:var(--soft);border:1px solid var(--border);color:#fff;padding:13px 16px;border-radius:12px;font:500 14.5px Inter,sans-serif;cursor:pointer;transition:border-color .2s,background .2s}
+  .opt:hover{border-color:var(--acc);background:#22100f}
+  .fields{display:grid;gap:10px}
+  .fields input{width:100%;font:500 14.5px Inter,sans-serif;background:var(--soft);border:1px solid var(--border);color:#fff;padding:13px 15px;border-radius:12px}
+  .fields input::placeholder{color:rgba(255,255,255,.4)}
+  .fields input:focus{outline:none;border-color:var(--acc)}
+  .fields.tried :invalid{border-color:#c0533f}
+  .tel{display:grid;grid-template-columns:auto 1fr;gap:8px}
+  .cc{position:relative;display:flex;align-items:center;gap:7px;background:var(--soft);border:1px solid var(--border);border-radius:12px;padding:0 13px;font:500 14.5px Inter,sans-serif;color:#fff;white-space:nowrap;cursor:pointer}
+  .cc svg{opacity:.55;flex:none}
+  .cc select{position:absolute;inset:0;width:100%;opacity:0;cursor:pointer;font-size:16px}
+  .cc:focus-within{border-color:var(--acc)}
+  .tel.bad input,.tel.bad .cc{border-color:#c0533f}
+  .field-err{font-size:12.5px;line-height:1.4;color:#ff8a80;margin-top:-2px}
+  .legal{display:flex;gap:9px;align-items:flex-start;font-size:12px;color:var(--t55);line-height:1.45}
+  .legal input{width:auto;margin-top:2px;accent-color:var(--acc)}
+  .legal a{text-decoration:underline}
+  .submit{width:100%;margin-top:6px;background:var(--gradient);color:#fff;border:0;border-radius:12px;padding:15px;font:700 15px Inter,sans-serif;cursor:pointer;text-align:center}
+  .back{background:none;border:0;color:var(--t38);font:500 13px Inter,sans-serif;cursor:pointer;margin-top:14px}
+  .back:hover{color:#fff}
+  .done{text-align:center;padding:12px 0}
+  .done .ok{width:56px;height:56px;border-radius:50%;background:var(--gradient);display:grid;place-items:center;margin:0 auto 16px}
+  .done h3{font-size:22px;margin-bottom:8px}
+  .done p{font-size:14.5px;color:var(--t55);margin-bottom:22px}
+  .done .submit{display:block}
+  .done p.done-note{margin:-8px 0 0;font-size:13.5px;font-weight:600;color:#fff}
+  .done p.done-small{margin:16px 0 0;font-size:12.5px;color:var(--t38)}
+
+  /* CALENDLY (ventana de reserva) */
+  .cal-overlay{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.72);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:24px}
+  .cal-overlay.active{display:flex}
+  .cal-modal{position:relative;width:100%;max-width:920px;height:min(85vh,780px);background:var(--surface);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow-lg);overflow:hidden;animation:calIn .25s ease}
+  @keyframes calIn{from{opacity:0;transform:translateY(12px) scale(.98)}}
+  .cal-close{position:absolute;top:14px;right:14px;z-index:2;width:36px;height:36px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:#000;display:grid;place-items:center;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35);transition:transform .15s}
+  .cal-close:hover{transform:scale(1.08)}
+  #cal-embed{width:100%;height:100%}
+  @media (max-width:640px){.cal-overlay{padding:0}.cal-modal{max-width:100%;height:100%;border-radius:0}}
+
+  /* CTA FINAL */
+  .final{position:relative;overflow:hidden;text-align:center;padding:110px 40px}
+  .final .hero-blob{top:auto;bottom:-520px}
+  .final h2{margin-bottom:10px}
+
+  /* COOKIES */
+  .cookie{position:fixed;left:16px;right:16px;bottom:16px;z-index:300;max-width:max-content;margin:0 auto;background:#0d0d10;border:1px solid var(--border-2);border-radius:14px;padding:10px 10px 10px 16px;box-shadow:var(--shadow-lg);display:none;align-items:center;gap:12px}
+  .cookie.show{display:flex;animation:fade .35s}
+  .cookie p{flex:1;font-size:13px;color:var(--t55);line-height:1.4;white-space:nowrap}
+  @media (max-width:600px){.cookie{max-width:none}.cookie p{white-space:normal}}
+  .cookie p a{color:#fff;text-decoration:underline;text-underline-offset:3px}
+  .cookie .btns{display:flex;gap:8px;flex:none}
+  .cookie button{border-radius:9px;padding:9px 14px;font:600 13px Inter,sans-serif;cursor:pointer;border:1px solid var(--border-2);background:transparent;color:#fff}
+  .cookie button.ok{background:#fff;color:#000;border-color:#fff}
+  footer{border-top:1px solid var(--border);padding:32px 40px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px;font-size:13px;color:var(--t38)}
+  footer a{transition:color .2s}
+  footer a:hover{color:#fff}
+  .foot-brand{display:flex;align-items:center;gap:18px}
+  .foot-logo{font-weight:800;font-size:20px;letter-spacing:-.02em;color:#fff}
+  .foot-logo span{color:var(--acc)}
+  .social{display:flex;gap:4px}
+  .social a{display:grid;place-items:center;width:36px;height:36px;color:var(--t55)}
+  .social a:hover{color:var(--acc)}
+  .social svg{width:22px;height:22px}
+  footer .links{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px 10px;font-size:12.5px}
+  footer .links a{color:var(--t55)}
+  footer .links i{font-style:normal;color:var(--t38)}
+  .foot-end{display:flex;flex-direction:column;gap:3px;text-align:right;justify-self:end}
+  .foot-end a{color:var(--t55);font-weight:500}
+  .foot-end span{font-size:11.5px}
+  @media (max-width:900px){
+    footer{grid-template-columns:1fr;justify-items:center;text-align:center;gap:26px;padding:44px 20px 40px}
+    .foot-brand{gap:22px}
+    footer .links{max-width:340px;font-size:14px;gap:10px 18px}
+    footer .links i{display:none}
+    .foot-end{text-align:center;justify-self:center;font-size:15px;gap:6px}
+    .foot-end span{font-size:13px}
+  }
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+  .reveal.in{opacity:1;transform:none}
+
+  @media (max-width:900px){
+    .steps{grid-template-columns:1fr 1fr}
+    .founder,.apply{grid-template-columns:1fr;gap:36px}
+    .founder-photo{max-width:320px}
+  }
+  @media (max-width:600px){
+    header{padding:0 16px}
+    .header-tag{display:none}
+    .hero{padding:104px 16px 60px}
+    .video{border-radius:14px;margin-top:30px}
+    .video .play i{width:54px;height:54px;box-shadow:0 0 0 9px rgba(225,29,42,.2)}
+    .video .play svg{width:22px;height:22px}
+    .video .play span{display:none}
+    .cta{width:100%;justify-content:center}
+    .stats{margin-top:40px}
+    .stat{padding:16px 6px}
+    .stat b{font-size:24px}
+    .stat span{font-size:11px;line-height:1.3;display:block;margin-top:4px}
+    .section{padding:70px 16px}
+    .steps{grid-template-columns:1fr}
+    .light{border-radius:24px;padding:48px 18px;margin:0 8px}
+    .quiz{padding:22px 18px}
+    .final{padding:80px 16px}
+  }
+  @media (prefers-reduced-motion:reduce){.hero-blob,.track,.badge strong{animation:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="#top">Rubén<span>.</span>Cruz</a>
+  <div class="header-right">
+    <span class="header-tag">Entrenador personal online</span>
+    <a class="header-cta" href="#quiz">Empezar ahora</a>
+  </div>
+</header>
+
+<main>
+  <!-- ─── HERO + VSL (lo primero que se ve) ─── -->
+  <section class="hero" id="top">
+    <div class="hero-blob"></div>
+    <div class="badge"><strong>▶ Vídeo 1 min</strong> Mira cómo trabajo</div>
+    <h1>Ponte en forma con un plan <em>hecho para tu vida.</em></h1>
+    <p class="sub">Entrenamiento y nutrición para gente normal, con trabajo, familia y poco tiempo.</p>
+
+    <!-- El vídeo se define en VIDEO_URL, abajo en el script -->
+    <div class="video" id="player" role="button" tabindex="0" aria-label="Reproducir vídeo">
+      <img src="img/portada-vsl.jpg" alt="Rubén Cruz: No necesitas más disciplina. Necesitas otro plan." width="1920" height="1080">
+      <div class="play">
+        <i><svg width="30" height="30" viewBox="0 0 24 24" fill="#fff" style="margin-left:5px"><path d="M7 4v16l13-8z"/></svg></i>
+        <span>Ver vídeo · 1 min</span>
+      </div>
+    </div>
+
+    <div class="hero-quiz">
+      <div class="quiz" id="quiz">
+        <div class="q-prog" id="prog">Paso 1 de 3</div>
+        <div class="bar"><div id="bar"></div></div>
+
+        <div class="q active" data-key="objetivo">
+          <p class="ask">¿Qué quieres conseguir?</p>
+          <div class="opts">
+            <button class="opt">Perder grasa y verme mejor</button>
+            <button class="opt">Ganar músculo y fuerza</button>
+            <button class="opt">Ponerme en forma y tener energía</button>
+            <button class="opt">Crear hábitos que me duren</button>
+          </div>
+        </div>
+
+        <div class="q" data-key="dias">
+          <p class="ask">¿Cuántos días podrías entrenar a la semana?</p>
+          <div class="opts">
+            <button class="opt">2–3 días</button>
+            <button class="opt">4 días</button>
+            <button class="opt">5 días o más</button>
+            <button class="opt">No lo sé, necesito que me guíes</button>
+          </div>
+          <button class="back" data-back>← Atrás</button>
+        </div>
+
+        <div class="q">
+          <p class="ask">Último paso. Déjame tus datos.</p>
+          <form class="fields" id="lead" novalidate>
+            <input type="text" name="nombre" placeholder="Nombre" required autocomplete="given-name">
+            <div class="tel">
+              <label class="cc"><span id="cc-label">🇪🇸 +34</span><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+                <select id="cc" aria-label="Prefijo del país"></select></label>
+              <input type="tel" id="tel" placeholder="Teléfono" required autocomplete="tel-national" inputmode="numeric" pattern="[0-9]*" maxlength="17" aria-describedby="tel-err">
+            </div>
+            <p class="field-err" id="tel-err" role="alert" hidden></p>
+            <input type="email" name="email" placeholder="Email" required autocomplete="email">
+            <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+            <label class="legal"><input type="checkbox" required><span>Acepto la <a href="privacidad.html" target="_blank" rel="noopener">política de privacidad</a>.</span></label>
+            <button class="submit" type="submit">Quiero empezar →</button>
+          </form>
+          <button class="back" data-back>← Atrás</button>
+        </div>
+
+        <div class="q">
+          <div class="done">
+            <div class="ok"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <h3 id="gracias-titulo">¡Gracias!</h3>
+            <div id="sin-reserva">
+              <p>He recibido tus datos correctamente. Voy a revisar tu caso personalmente y me pondré en contacto contigo lo antes posible.</p>
+              <p class="done-note">Ten el móvil a mano: el primer paso ya está dado 💪</p>
+            </div>
+            <div id="con-reserva" hidden>
+              <p>He recibido tus datos y revisaré tu caso antes de hablar contigo.<br>Si quieres avanzar más rápido, puedes reservar directamente tu llamada de valoración gratuita conmigo, en el día y la hora que mejor te vengan.</p>
+              <button type="button" class="submit" id="cal-open">Reservar mi llamada →</button>
+              <p class="done-small">Si prefieres no reservar ahora, me pondré en contacto contigo lo antes posible.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <span class="cta-note">Llamada de valoración gratuita · Sin compromiso</span>
+    </div>
+
+    <div class="stats">
+      <div class="stat reveal"><b>10+</b><span>años de experiencia</span></div>
+      <div class="stat reveal"><b>300+</b><span>alumnos acompañados</span></div>
+      <div class="stat reveal"><b>1:1</b><span>trato directo conmigo</span></div>
+    </div>
+  </section>
+
+  <!-- ─── MARQUEE ─── -->
+  <div class="marquee" aria-hidden="true"><div class="track" id="track"></div></div>
+
+  <!-- ─── CÓMO FUNCIONA ─── -->
+  <section class="section">
+    <p class="label">Proceso</p>
+    <h2>De no saber por dónde empezar a <em>verte y sentirte mejor</em>.</h2>
+    <div class="steps">
+      <div class="step reveal"><div class="num">01</div><h4>Llamada gratuita</h4><p>Me cuentas tu rutina, tus horarios y qué quieres conseguir.</p></div>
+      <div class="step reveal"><div class="num">02</div><h4>Tu plan a medida</h4><p>Entrenamiento y alimentación adaptados a tu vida, en casa o en el gimnasio.</p></div>
+      <div class="step reveal"><div class="num">03</div><h4>Entrenas con mi guía</h4><p>Vídeos de técnica y WhatsApp directo conmigo para cualquier duda.</p></div>
+      <div class="step reveal"><div class="num">04</div><h4>Revisión mensual</h4><p>Cada mes vemos cómo vas y ajusto el plan para que sigas avanzando.</p></div>
+    </div>
+  </section>
+
+  <!-- ─── RESULTADOS ─── -->
+  <!-- EDITAR: si Rubén pasa datos reales (tiempo, kg, cm), añadirlos en cada caso -->
+  <section class="section" style="padding-top:20px">
+    <p class="label">Resultados reales</p>
+    <h2>Cambios de <em>mis alumnos</em></h2>
+    <div class="cases-wrap">
+      <button class="cases-btn prev" aria-label="Anterior">←</button>
+      <div class="cases" id="cases">
+        <div class="case">
+          <img src="img/casos/caso-perdida-grasa.jpg" alt="Antes y después de un alumno de Rubén: pérdida de grasa" loading="lazy" width="1536" height="1024">
+          <div><small>Pérdida de grasa</small><b>Fuera barriga, más músculo</b><p>De partir de cero a un cuerpo fuerte y definido, con un plan que encaja en su día a día.</p></div>
+        </div>
+        <div class="case">
+          <img src="img/casos/caso-barriga.jpg" alt="Antes y después de un alumno de Rubén: pérdida de grasa" loading="lazy" width="1199" height="1312" style="object-fit:contain">
+          <div><small>Pérdida de grasa</small><b>Adiós barriga</b><p>Menos grasa abdominal y una postura mucho mejor, de frente y de perfil.</p></div>
+        </div>
+        <div class="case">
+          <img src="img/casos/caso-recomposicion.jpg" alt="Antes y después de un alumno de Rubén: recomposición" loading="lazy" width="1536" height="1024">
+          <div><small>Recomposición</small><b>Mismo peso, otro cuerpo</b><p>Menos grasa y más músculo en hombros, brazos y abdomen.</p></div>
+        </div>
+        <div class="case">
+          <img src="img/casos/caso-alumna.jpg" alt="Antes y después de un alumno de Rubén: alumna" loading="lazy" width="1536" height="1024">
+          <div><small>Alumna</small><b>Fuerza y tono</b><p>Espalda, glúteos y piernas mucho más marcados.</p></div>
+        </div>
+        <div class="case">
+          <img src="img/casos/caso-definicion-perfil.jpg" alt="Antes y después de un alumno de Rubén: definición" loading="lazy" width="1536" height="1024">
+          <div><small>Definición</small><b>Más fibrado</b><p>Abdomen y hombros marcados, con más músculo en todo el cuerpo.</p></div>
+        </div>
+        <div class="case">
+          <img src="img/casos/caso-definicion.jpg" alt="Antes y después de un alumno de Rubén: definición" loading="lazy" width="1536" height="1024">
+          <div><small>Definición</small><b>Abdomen marcado</b><p>Bajó la grasa y ganó densidad muscular en todo el cuerpo.</p></div>
+        </div>
+        <div class="case">
+          <img src="img/casos/caso-4-meses.jpg" alt="Antes y después de un alumno de Rubén: 4 meses" loading="lazy" width="1536" height="1024">
+          <div><small>4 meses</small><b>Más denso y definido</b><p>Más masa muscular, cintura más estrecha y menos grasa corporal.</p></div>
+        </div>
+        <div class="case">
+          <img src="img/casos/caso-volumen.jpg" alt="Antes y después de un alumno de Rubén: ganancia muscular" loading="lazy" width="1536" height="1024">
+          <div><small>Ganancia muscular</small><b>Espalda y piernas</b><p>Un cambio completo de volumen y calidad muscular.</p></div>
+        </div>
+        <div class="case">
+          <img src="img/casos/caso-competicion.jpg" alt="Antes y después de un alumno de Rubén: preparación" loading="lazy" width="1536" height="1024">
+          <div><small>Preparación</small><b>Listo para competir</b><p>De volumen a una condición de tarima, con más definición y densidad.</p></div>
+        </div>
+      </div>
+      <button class="cases-btn next" aria-label="Siguiente">→</button>
+    </div>
+  </section>
+
+  <!-- ─── QUIÉN HAY DETRÁS ─── -->
+  <section class="section">
+    <div class="founder">
+      <div class="founder-photo reveal"><img src="img/ig/ig-oct12.jpg" alt="Rubén Cruz con medalla de competición"></div>
+      <div class="reveal">
+        <p class="label">Quién hay detrás</p>
+        <h2>Soy Rubén y <em>sé lo que cuesta.</em></h2>
+        <p>He competido en culturismo y sé lo que es la disciplina de verdad. Pero no hace falta que tú subas a una tarima: la mayoría de mis alumnos son gente normal que quiere verse y sentirse mejor.</p>
+        <p>Todo lo que he aprendido en mi propio cuerpo lo aplico a tu vida real: con tus horarios, tus comidas y tus días malos. Sin extremos.</p>
+        <p><strong>Sin equipo detrás: hablas directamente conmigo.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── QUÉ INCLUYE ─── -->
+  <section class="section light" id="incluye">
+    <div class="apply">
+      <div>
+        <p class="label">Asesoría online</p>
+        <h2>¿Qué incluye <em>tu plan</em>?</h2>
+        <ul class="list">
+          <li class="reveal">Entrenamiento personalizado con vídeos de técnica</li>
+          <li class="reveal">Plan de alimentación con comida real, sin pasar hambre</li>
+          <li class="reveal">Adaptado a tus horarios, en casa o en el gimnasio</li>
+          <li class="reveal">Revisión mensual de fotos, medidas y sensaciones</li>
+          <li class="reveal">WhatsApp directo conmigo para cualquier duda</li>
+        </ul>
+      </div>
+      <div class="apply-side">
+        <div class="price-ref"><b>Plan mensual, trimestral o semestral</b>Te explico las opciones y elegimos la tuya en la llamada gratuita.</div>
+        <a class="cta" href="#quiz">Quiero empezar →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CTA FINAL ─── -->
+  <section class="final">
+    <div class="hero-blob"></div>
+    <h2>Dentro de 4 semanas vas a desear <em>haber empezado hoy.</em></h2>
+    <a class="cta" href="#quiz">Empezar ahora →</a>
+  </section>
+</main>
+
+<footer>
+  <div class="foot-brand">
+    <a class="foot-logo" href="#top">Rubén<span>.</span>Cruz</a>
+    <div class="social">
+      <a href="https://www.instagram.com/rubencruz.pt/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="https://www.tiktok.com/@rubencruz.pt" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M13 7v7.2a2.3 2.3 0 1 1-2.3-2.3" stroke-linecap="round"/><path d="M13 7c.3 1.5 1.3 2.6 2.8 2.9" stroke-linecap="round"/></svg></a>
+    </div>
+  </div>
+  <div class="links">
+    <a href="aviso-legal.html">Aviso legal</a><i>·</i>
+    <a href="privacidad.html">Política de privacidad</a><i>·</i>
+    <a href="cookies.html">Política de cookies</a><i>·</i>
+    <a href="#" id="cookie-settings">Configurar cookies</a>
+  </div>
+  <div class="foot-end"><a href="#" class="wa-link" target="_blank" rel="noopener">WhatsApp</a><span>© 2026 Rubén Cruz</span></div>
+</footer>
+
+<div class="cal-overlay" id="cal-overlay" role="dialog" aria-label="Reservar llamada">
+  <div class="cal-modal">
+    <button type="button" class="cal-close" id="cal-close" aria-label="Cerrar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    <div id="cal-embed"></div>
+  </div>
+</div>
+
+<div class="cookie" id="cookie" role="dialog" aria-label="Aviso de cookies">
+  <p>Uso cookies para medir visitas y anuncios. <a href="cookies.html">Más info</a></p>
+  <div class="btns"><button type="button" id="cookie-no">Rechazar</button><button type="button" class="ok" id="cookie-yes">Aceptar</button></div>
+</div>
+
+<script src="js/libphonenumber-max.js"></script>
+<script>
+  // VSL: archivo propio (img/vsl-ruben.mp4) o, si se sube a YouTube, la URL de embed sin cookies:
+  // "https://www.youtube-nocookie.com/embed/ID_DEL_VIDEO?autoplay=1"
+  const VIDEO_URL = "img/vsl-ruben.mp4";
+  const player = document.getElementById('player');
+  player.addEventListener('click', () => {
+    if (!VIDEO_URL) { player.querySelector('.play span').textContent = 'Aquí irá el vídeo (pendiente de grabar)'; return; }
+    if (/\.(mp4|webm|mov)(\?|$)/i.test(VIDEO_URL)) {
+      const v = document.createElement('video');
+      v.src = VIDEO_URL; v.controls = true; v.playsInline = true; v.autoplay = true;
+      player.replaceChildren(v);
+    } else player.innerHTML = `<iframe src="${VIDEO_URL}" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+  });
+
+  // Número de WhatsApp de Rubén (formato internacional, sin + ni espacios)
+  const WHATSAPP = "34655866773";
+  const wa = txt => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(txt)}`;
+  document.querySelectorAll('.wa-link').forEach(a => a.href = wa('¡Hola Rubén! Quiero información sobre tu asesoría.'));
+
+  // Marquee
+  const items = ['Pérdida de grasa','Ganar músculo','Hábitos','Energía','Salud','Nutrición flexible','En casa o en el gimnasio','Revisión mensual'];
+  document.getElementById('track').innerHTML = [...items, ...items].map(t => `<span>${t}</span><i></i>`).join('');
+
+  // Carrusel de casos
+  const casesEl = document.getElementById('cases');
+  document.querySelector('.cases-btn.prev').onclick = () => casesEl.scrollBy({left:-478});
+  document.querySelector('.cases-btn.next').onclick = () => casesEl.scrollBy({left:478});
+
+  // Envío de solicitudes al Google Sheet + email (ver apps-script/LEEME.md)
+  // URL de la aplicación web de Apps Script (Sheet «FORMULARIO LEADS» de Rubén)
+  const LEAD_URL = "https://script.google.com/macros/s/AKfycbzm1JYvRefPakL2a7DrAgXPJkM8U_1URZehCsF4JxcxNTqG39QnFx-23htSwx8hYJSE/exec";
+  // Origen de la visita: de qué red social o web viene la gente (se calcula al cargar, sin guardar nada)
+  const fuente = (() => {
+    const p = new URLSearchParams(location.search), ua = navigator.userAgent;
+    let ref = ''; try { ref = document.referrer ? new URL(document.referrer).hostname.replace(/^www\./, '') : ''; } catch (e) {}
+    const utm = ['utm_source','utm_medium','utm_campaign','utm_content'].map(k => p.get(k)).filter(Boolean);
+    const src = (p.get('utm_source') || '').toLowerCase(), med = (p.get('utm_medium') || '').toLowerCase();
+    const pagado = p.has('fbclid') && /paid|ads|cpc|anuncio/.test(med) || p.has('gclid') || p.has('ttclid') || /paid|ads|cpc|anuncio/.test(med);
+    const redes = [
+      ['Instagram', /instagram|^ig$/, /instagram\.com$/, /Instagram/],
+      ['Facebook', /facebook|^fb$/, /facebook\.com$|fb\.com$/, /FBAN|FBAV|FB_IAB/],
+      ['TikTok', /tiktok/, /tiktok\.com$/, /musical_ly|BytedanceWebview|TikTok/i],
+      ['LinkedIn', /linkedin/, /linkedin\.com$|lnkd\.in$/, /LinkedInApp/],
+      ['YouTube', /youtube|^yt$/, /youtube\.com$|youtu\.be$/, null],
+      ['WhatsApp', /whatsapp|^wa$/, /whatsapp\.com$/, /WhatsApp/],
+      ['X / Twitter', /twitter|^x$/, /^t\.co$|twitter\.com$|^x\.com$/, /Twitter/],
+      ['Google', /google/, /^google\./, null],
+      ['Email', /email|newsletter|mail/, /mail\./, null],
+    ];
+    let canal = '';
+    for (const [n, rs, rr, ru] of redes) if ((src && rs.test(src)) || (ref && rr.test(ref)) || (ru && ru.test(ua))) { canal = n; break; }
+    if (!canal && p.has('gclid')) canal = 'Google';
+    if (!canal && p.has('fbclid')) canal = 'Meta';
+    if (!canal && p.has('ttclid')) canal = 'TikTok';
+    if (!canal) canal = src ? p.get('utm_source') : ref ? ref : 'Directo';
+    if (pagado) canal += ' (anuncio)';
+    else if (/bio/.test(med) || /bio/.test(p.get('utm_content') || '')) canal += ' (bio)';
+    const detalle = [utm.join(' / '), ref && 'desde ' + ref].filter(Boolean).join(' · ');
+    return { canal, detalle };
+  })();
+
+  // Medidor de visitas propio (pestaña «Visitas» del Sheet): anónimo, sin cookies y sin guardar nada en el navegador.
+  // Solo envía el momento (visita, vídeo, test…), el canal de origen y si es móvil u ordenador.
+  const esRobot = /bot|crawl|spider|slurp|preview|facebookexternalhit|whatsapp\/|lighthouse|headless/i.test(navigator.userAgent);
+  const dispositivo = /iPad|Tablet/i.test(navigator.userAgent) ? 'Tablet' : /Mobi|Android|iPhone/i.test(navigator.userAgent) ? 'Móvil' : 'Ordenador';
+  // Encender (true) SOLO cuando el Apps Script publicado tenga la versión con «guardarEvento_»;
+  // con la versión antigua cada visita llegaría como solicitud vacía y mandaría un email a Rubén.
+  const MEDIR_VISITAS = true;
+  const yaMedido = new Set();
+  const medir = evento => {
+    if (!MEDIR_VISITAS || !LEAD_URL || esRobot || yaMedido.has(evento)) return;
+    yaMedido.add(evento);
+    const body = JSON.stringify({ tipo: 'evento', evento, canal: fuente.canal, origen: fuente.detalle, dispositivo });
+    try { if (navigator.sendBeacon && navigator.sendBeacon(LEAD_URL, new Blob([body], {type: 'text/plain;charset=utf-8'}))) return; } catch (e) {}
+    fetch(LEAD_URL, {method: 'POST', mode: 'no-cors', keepalive: true, headers: {'Content-Type': 'text/plain;charset=utf-8'}, body}).catch(() => {});
+  };
+  medir('Visita');
+  player.addEventListener('click', () => medir('Vídeo reproducido'));
+
+  // Quiz
+  const qs = [...document.querySelectorAll('.q')], bar = document.getElementById('bar'), prog = document.getElementById('prog');
+  const answers = {}; let cur = 0;
+  const go = i => {
+    qs[cur].classList.remove('active'); cur = i; qs[cur].classList.add('active');
+    const last = cur === qs.length - 1;
+    bar.style.width = last ? '100%' : ((cur + 1) / 3 * 100) + '%';
+    prog.textContent = last ? 'Completado' : `Paso ${cur + 1} de 3`;
+  };
+  qs.forEach((q, i) => q.querySelectorAll('.opt').forEach(b => b.addEventListener('click', () => { answers[q.dataset.key] = b.textContent; if (i === 0) medir('Test empezado'); go(i + 1); })));
+  document.querySelectorAll('[data-back]').forEach(b => b.addEventListener('click', () => go(cur - 1)));
+  // Teléfono: prefijos de todos los países + validación estricta (libphonenumber, datos completos de Google)
+  // Solo se aceptan números de móvil válidos del país elegido (longitud, prefijo y rango exactos)
+  const TIPOS_OK = ['MOBILE', 'FIXED_LINE_OR_MOBILE'];
+  const LPN = window.libphonenumber;
+  const ccSel = document.getElementById('cc'), ccLabel = document.getElementById('cc-label');
+  const telIn = document.getElementById('tel'), telErr = document.getElementById('tel-err'), telWrap = telIn.closest('.tel');
+  const nombrePais = (() => { try { const dn = new Intl.DisplayNames(['es'], {type:'region'}); return c => dn.of(c) || c; } catch (e) { return c => c; } })();
+  const bandera = c => c.replace(/./g, ch => String.fromCodePoint(127397 + ch.charCodeAt(0)));
+  const paises = LPN.getCountries().map(c => ({c, n: nombrePais(c), p: LPN.getCountryCallingCode(c)})).sort((a, b) => a.n.localeCompare(b.n, 'es'));
+  const opt = x => `<option value="${x.c}">${bandera(x.c)} ${x.n} (+${x.p})</option>`;
+  const destacados = ['ES'].map(c => paises.find(x => x.c === c));
+  ccSel.innerHTML = destacados.map(opt).join('') + '<option disabled>──────────</option>' + paises.map(opt).join('');
+  const regionNav = ((navigator.language || '').split('-')[1] || '').toUpperCase();
+  const setPais = c => { ccSel.value = c; ccLabel.textContent = `${bandera(c)} +${LPN.getCountryCallingCode(c)}`; };
+  // Longitudes de móvil de cada país (sin el 0 nacional); si el país no las distingue, las generales
+  const plan = c => { const m = new LPN.Metadata(); m.selectNumberingPlan(c); return m.numberingPlan; };
+  const largosMovil = c => { const p = plan(c); try { const l = p.type('MOBILE').possibleLengths(); if (l && l.length) return l; } catch (e) {} return p.possibleLengths(); };
+  const prefijoNac = c => plan(c).nationalPrefix() || '';
+  const maxCifras = (c, v) => {
+    if (/^00/.test(v)) return 17;
+    const pn = prefijoNac(c);
+    return Math.max(...largosMovil(c)) + (pn && v.startsWith(pn) ? pn.length : 0);
+  };
+  const cifrasTxt = c => { const l = [...new Set(largosMovil(c))]; return l.length > 1 ? l.slice(0, -1).join(', ') + ' u ' + l[l.length - 1] : String(l[0]); };
+  setPais(LPN.isSupportedCountry(regionNav) ? regionNav : 'ES');
+  let telFinal = '';
+  const validarTel = (mostrar) => {
+    const v = telIn.value.trim(), c = ccSel.value, pais = `${nombrePais(c)} (+${LPN.getCountryCallingCode(c)})`;
+    let msg = '';
+    telFinal = '';
+    if (!v) msg = 'Introduce tu teléfono.';
+    else {
+      // Si escriben el número con prefijo internacional (0044…), se cambia el país automáticamente
+      const conPrefijo = /^00/.test(v);
+      const n = LPN.parsePhoneNumberFromString(conPrefijo ? v.replace(/^00/, '+') : v, c);
+      if (conPrefijo && n && n.country && n.country !== c) setPais(n.country);
+      const cAct = ccSel.value, paisAct = `${nombrePais(cAct)} (+${LPN.getCountryCallingCode(cAct)})`;
+      const nac = n ? n.nationalNumber.length : 0, lm = largosMovil(cAct);
+      if (!n || !n.isPossible() || nac < Math.min(...lm) || nac > Math.max(...lm)) msg = `Un móvil de ${paisAct} tiene ${cifrasTxt(cAct)} cifras.`;
+      else if (!n.isValid() || n.country !== cAct) msg = `Este número no existe en ${paisAct}. Revisa el prefijo y las cifras.`;
+      else if (!TIPOS_OK.includes(n.getType())) msg = `Introduce un número de móvil de ${paisAct}.`;
+      else telFinal = n.formatInternational();
+    }
+    telIn.setCustomValidity(msg);
+    if (mostrar || !msg) { telErr.textContent = msg; telErr.hidden = !msg; telWrap.classList.toggle('bad', !!msg); }
+    return !msg;
+  };
+  ccSel.addEventListener('change', () => { setPais(ccSel.value); telIn.maxLength = maxCifras(ccSel.value, telIn.value); if (telIn.value) validarTel(true); telIn.focus(); });
+  telIn.maxLength = maxCifras(ccSel.value, '');
+  // Solo cifras: se bloquea cualquier otro carácter al escribir y se limpia al pegar o autocompletar
+  telIn.addEventListener('beforeinput', e => { if (e.data && e.data.length === 1 && /\D/.test(e.data)) e.preventDefault(); });
+  telIn.addEventListener('input', () => {
+    let limpio = telIn.value.replace(/^\+/, '00').replace(/\D/g, '');
+    if (/^00/.test(limpio)) { while (limpio.length > 2 && LPN.validatePhoneNumberLength('+' + limpio.slice(2)) === 'TOO_LONG') limpio = limpio.slice(0, -1); }
+    else limpio = limpio.slice(0, maxCifras(ccSel.value, limpio));
+    if (limpio !== telIn.value) telIn.value = limpio;
+    telIn.maxLength = maxCifras(ccSel.value, limpio);
+    validarTel(form.classList.contains('tried') || !telErr.hidden);
+  });
+  telIn.addEventListener('blur', () => { if (telIn.value) validarTel(true); });
+
+  // Enlace del tipo de cita de Calendly de Rubén. Vacío = no se muestra el botón de reserva
+  const CALENDLY_URL = "https://calendly.com/rubencruz-pt90/llamada-de-valoracion-gratuita";
+  if (CALENDLY_URL) { document.getElementById('sin-reserva').hidden = true; document.getElementById('con-reserva').hidden = false; }
+  const calOverlay = document.getElementById('cal-overlay'), calEmbed = document.getElementById('cal-embed');
+  let calDatos = {}, calCargado = false;
+  const cargarCalendly = () => new Promise(ok => {
+    if (window.Calendly) return ok();
+    const css = document.createElement('link'); css.rel = 'stylesheet'; css.href = 'https://assets.calendly.com/assets/external/widget.css'; document.head.appendChild(css);
+    const js = document.createElement('script'); js.src = 'https://assets.calendly.com/assets/external/widget.js'; js.onload = ok; document.head.appendChild(js);
+  });
+  const abrirCal = async () => {
+    calOverlay.classList.add('active'); document.body.style.overflow = 'hidden';
+    if (calCargado) return;
+    await cargarCalendly();
+    // Nombre y email ya rellenados en Calendly (encodeURIComponent: los espacios como %20, no como +)
+    const q = [['hide_gdpr_banner', '1'], ['name', calDatos.nombre], ['email', calDatos.email]]
+      .filter(([, v]) => v).map(([k, v]) => k + '=' + encodeURIComponent(v)).join('&');
+    Calendly.initInlineWidget({ url: CALENDLY_URL + (CALENDLY_URL.includes('?') ? '&' : '?') + q, parentElement: calEmbed });
+    calCargado = true;
+  };
+  const cerrarCal = () => { calOverlay.classList.remove('active'); document.body.style.overflow = ''; };
+  document.getElementById('cal-open').addEventListener('click', () => { medir('Reserva abierta'); abrirCal(); });
+  document.getElementById('cal-close').addEventListener('click', cerrarCal);
+  calOverlay.addEventListener('click', e => { if (e.target === calOverlay) cerrarCal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && calOverlay.classList.contains('active')) cerrarCal(); });
+
+  const form = document.getElementById('lead');
+  form.addEventListener('submit', e => {
+    e.preventDefault(); form.classList.add('tried');
+    validarTel(true);
+    if (!form.checkValidity()) { form.querySelector(':invalid').focus(); return; }
+    const data = {...answers, ...Object.fromEntries(new FormData(form)), telefono: telFinal, canal: fuente.canal, origen: fuente.detalle};
+    if (LEAD_URL) fetch(LEAD_URL, {method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify(data)}).catch(() => {});
+    medir('Solicitud enviada');
+    if (window.fbq) fbq('track', 'Lead');
+    const nombre = (data.nombre || '').trim().split(/\s+/)[0];
+    if (nombre) document.getElementById('gracias-titulo').textContent = `¡Gracias, ${nombre}!`;
+    calDatos = { nombre: (data.nombre || '').trim(), email: (data.email || '').trim() };
+    const nota = document.querySelector('.hero-quiz .cta-note'); if (nota) nota.hidden = true;
+    go(qs.length - 1);
+  });
+
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Cookies: el píxel de Meta solo se carga si se aceptan
+  // EDITAR: ID del píxel de Meta
+  const META_PIXEL_ID = "";
+  function loadPixel(){
+    if (!META_PIXEL_ID || window.fbq) return;
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', META_PIXEL_ID); fbq('track', 'PageView');
+  }
+  const cookieBox = document.getElementById('cookie');
+  let consent = null;
+  try { consent = localStorage.getItem('ruben_cookies'); } catch(e) {}
+  if (consent === 'all') loadPixel(); else if (!consent) cookieBox.classList.add('show');
+  const setConsent = v => { try { localStorage.setItem('ruben_cookies', v); } catch(e) {} cookieBox.classList.remove('show'); if (v === 'all') loadPixel(); };
+  document.getElementById('cookie-yes').onclick = () => setConsent('all');
+  document.getElementById('cookie-no').onclick = () => setConsent('essential');
+  document.getElementById('cookie-settings').onclick = e => { e.preventDefault(); cookieBox.classList.add('show'); };
+</script>
+</body>
+</html>
