@@ -73,6 +73,16 @@
   .video:hover .play i{transform:scale(1.08)}
   .video .play span{font-size:13px;font-weight:600;color:rgba(255,255,255,.85);background:rgba(0,0,0,.5);padding:6px 14px;border-radius:100px;backdrop-filter:blur(8px)}
   .video iframe,.video video{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000}
+  /* Botón propio de pantalla completa (el nativo no sale en los navegadores de Instagram/TikTok ni en algunos Android) */
+  .vfs{position:absolute;top:10px;right:10px;z-index:3;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:rgba(0,0,0,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:#fff;display:grid;place-items:center;cursor:pointer;padding:0}
+  .vfs svg{width:18px;height:18px}
+  .vfs .salir{display:none}
+  .video.fs-falsa{position:fixed;inset:0;z-index:1000;max-width:none;margin:0;aspect-ratio:auto;width:100vw;height:100vh;height:100dvh;border-radius:0;border:0;background:#000}
+  .video.fs-falsa video{object-fit:contain}
+  .video.fs-falsa .vfs .entrar{display:none}.video.fs-falsa .vfs .salir{display:block}
+  body.sin-scroll{overflow:hidden}
+  .video:fullscreen{border-radius:0;border:0;max-width:none;margin:0}.video:-webkit-full-screen{border-radius:0;border:0;max-width:none;margin:0}
+  .video:fullscreen .vfs .entrar,.video:-webkit-full-screen .vfs .entrar{display:none}.video:fullscreen .vfs .salir,.video:-webkit-full-screen .vfs .salir{display:block}
 
   .cta{display:inline-flex;align-items:center;gap:8px;margin-top:34px;background:var(--gradient);background-size:200% 100%;color:#fff;font-weight:700;font-size:16px;padding:16px 30px;border-radius:12px;box-shadow:0 10px 30px -8px rgba(225,29,42,.6);transition:transform .2s,background-position .6s;border:0;cursor:pointer;font-family:inherit}
   .cta:hover{transform:translateY(-2px);background-position:100% 50%}
@@ -511,10 +521,27 @@
     if (/\.(mp4|webm|mov)(\?|$)/i.test(VIDEO_URL)) {
       const v = document.createElement('video');
       v.src = VIDEO_URL; v.controls = true; v.playsInline = true; v.autoplay = true; v.preload = 'auto';
-      player.replaceChildren(v);
+      const bfs = document.createElement('button');
+      bfs.type = 'button'; bfs.className = 'vfs'; bfs.setAttribute('aria-label', 'Pantalla completa');
+      bfs.innerHTML = '<svg class="entrar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg><svg class="salir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>';
+      bfs.addEventListener('click', e => { e.stopPropagation(); pantallaCompleta(v); });
+      player.replaceChildren(v, bfs);
       v.play().catch(() => {});
     } else player.innerHTML = `<iframe src="${VIDEO_URL}" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
   };
+  // Pantalla completa: nativa si el navegador la permite; si no, el vídeo ocupa toda la ventana
+  const salirFalsa = () => { player.classList.remove('fs-falsa'); document.body.classList.remove('sin-scroll'); };
+  const pantallaCompleta = async v => {
+    if (player.classList.contains('fs-falsa')) return salirFalsa();
+    if (document.fullscreenElement || document.webkitFullscreenElement) { (document.exitFullscreen || document.webkitExitFullscreen).call(document); return; }
+    try {
+      if (document.fullscreenEnabled && player.requestFullscreen) { await player.requestFullscreen(); return; }
+      if (player.webkitRequestFullscreen && document.webkitFullscreenEnabled) { player.webkitRequestFullscreen(); return; }
+      if (v.webkitEnterFullscreen && v.webkitSupportsFullscreen !== false) { v.webkitEnterFullscreen(); return; } // iPhone
+    } catch (e) {}
+    player.classList.add('fs-falsa'); document.body.classList.add('sin-scroll');
+  };
+  addEventListener('keydown', e => { if (e.key === 'Escape' && player.classList.contains('fs-falsa')) salirFalsa(); });
   player.addEventListener('click', abrirVideo);
   player.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && !player.dataset.abierto) { e.preventDefault(); abrirVideo(); } });
 
